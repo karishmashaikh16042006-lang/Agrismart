@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crop Advisory | AgriSmart</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8f4;
+            color: #26352a;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #123c28;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #9be36b;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a9e879;
+        }
+
+        .logout-btn {
+            background: #2f8a49;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #246f3a;
+            color: white !important;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(18,60,40,0.96),
+                    rgba(42,105,68,0.94)
+                );
+
+            color: white;
+            text-align: center;
+            padding: 78px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "🌾";
+            position: absolute;
+            right: 7%;
+            top: 10px;
+            font-size: 170px;
+            opacity: 0.08;
+        }
+
+        .hero-label {
+            color: #a8e877;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin: 12px 0 15px;
+        }
+
+        .hero h1 span {
+            color: #a9e879;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: auto;
+            color: #e5efe8;
+            font-size: 17px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 86%;
+            max-width: 1250px;
+            margin: 65px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .heading h2 {
+            color: #123c28;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .heading h2::after {
+            content: "";
+            display: block;
+            width: 55px;
+            height: 4px;
+            background: #8bc95d;
+            margin: 10px auto 0;
+            border-radius: 5px;
+        }
+
+        .heading p {
+            color: #69766d;
+            font-size: 15px;
+        }
+
+        /* ================= CROP GRID ================= */
+
+        .crop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        /* ================= CROP CARD ================= */
+
+        .crop-card {
+            background: white;
+            border-radius: 18px;
+            padding: 27px;
+            border: 1px solid #e0e8e1;
+            box-shadow: 0 7px 22px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crop-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #3d8b4d;
+        }
+
+        .crop-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.10);
+        }
+
+        .crop-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: #e8f5e7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 33px;
+            margin-bottom: 17px;
+        }
+
+        .crop-card h3 {
+            color: #123c28;
+            font-size: 24px;
+            margin-bottom: 9px;
+        }
+
+        .crop-description {
+            color: #68756c;
+            font-size: 14px;
+            min-height: 68px;
+            margin-bottom: 18px;
+        }
+
+        /* ================= TAGS ================= */
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #e9f5e8;
+            color: #28613b;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .view-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            background: #2f7d4d;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #205f3a;
+            transform: translateY(-2px);
+        }
+
+        /* ================= INFORMATION BANNER ================= */
+
+        .info-banner {
+            margin-top: 55px;
+            background: #e8f4e8;
+            border-left: 6px solid #3d8b4d;
+            border-radius: 12px;
+            padding: 27px 30px;
+        }
+
+        .info-banner h3 {
+            color: #123c28;
+            margin-bottom: 8px;
+            font-size: 21px;
+        }
+
+        .info-banner p {
+            color: #607066;
+            font-size: 14px;
+        }
+
+        /* ================= EMPTY STATE ================= */
+
+        .empty-box {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid #e0e8e1;
+            box-shadow: 0 7px 20px rgba(0,0,0,0.05);
+        }
+
+        .empty-box h3 {
+            color: #123c28;
+            margin-bottom: 10px;
+        }
+
+        .empty-box p {
+            color: #68756c;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #123c28;
+            color: white;
+            padding: 38px 8%;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand h2 {
+            margin-bottom: 8px;
+        }
+
+        .footer-brand span {
+            color: #9be36b;
+        }
+
+        .footer-brand p {
+            max-width: 470px;
+            color: #c9d9cd;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 7px;
+        }
+
+        .footer-links a {
+            color: #c9d9cd;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: #9be36b;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            margin-top: 30px;
+            padding-top: 18px;
+            text-align: center;
+            color: #b9cbbd;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1050px) {
+
+            .crop-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 13px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .crop-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- NAVBAR -->
+<!-- ================================================= -->
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        Agri<span>Smart</span> 🌱
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="/">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="/crops">
+                Crop Advisory
+            </a>
+        </li>
+
+        <li>
+            <a href="/disease">
+                Diseases
+            </a>
+        </li>
+
+        <li>
+            <a href="/fertilizer">
+                Fertilizer
+            </a>
+        </li>
+
+        <li>
+            <a href="/schemes">
+                Schemes
+            </a>
+        </li>
+
+        <li>
+            <a href="/policies">
+                Policies
+            </a>
+        </li>
+
+        <li>
+            <a href="/institutes">
+                Institutes
+            </a>
+        </li>
+
+        {% if session.get("user_type", "").lower() == "admin" %}
+
+        <li>
+            <a href="/admin">
+                Admin
+            </a>
+        </li>
+
+        {% endif %}
+
+        <li>
+            <a href="/logout" class="logout-btn">
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- ================================================= -->
+<!-- HERO -->
+<!-- ================================================= -->
+
+<section class="hero">
+
+    <div class="hero-label">
+        Smart Farming Advisory
+    </div>
+
+    <h1>
+        Smart <span>Crop Advisory</span> 🌾
+    </h1>
+
+    <p>
+        Explore crop-specific information including
+        suitable temperature, water requirements,
+        soil conditions, cultivation practices,
+        fertilizer guidance, pest and disease awareness,
+        harvesting and smart farming tips.
+    </p>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- MAIN CONTENT -->
+<!-- ================================================= -->
+
+<main class="container">
+
+
+    <div class="heading">
+
+        <h2>
+            Explore Crop Information
+        </h2>
+
+        <p>
+            Select a crop to view detailed farming
+            information and practical advisory.
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DYNAMIC CROP CARDS -->
+    <!-- ================================================= -->
+
+    {% if crops %}
+
+    <div class="crop-grid">
+
+        {% for crop in crops %}
+
+        <div class="crop-card">
+
+
+            <!-- ICON -->
+
+            <div class="crop-icon">
+
+                {{ crop_icons.get(crop.crop_name, "🌱") }}
+
+            </div>
+
+
+            <!-- CROP NAME -->
+
+            <h3>
+                {{ crop.crop_name }}
+            </h3>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="crop-description">
+
+                {{ crop_descriptions.get(
+                    crop.crop_name,
+                    "Explore crop-specific farming information, growing conditions and agricultural advisory."
+                ) }}
+
+            </p>
+
+
+            <!-- TAGS -->
+
+            <div class="tags">
+
+                {% if crop.crop_type %}
+
+                <span class="tag">
+                    🌱 {{ crop.crop_type }}
+                </span>
+
+                {% endif %}
+
+
+                {% if crop.water_requirement %}
+
+                <span class="tag">
+                    💧 {{ crop.water_requirement }}
+                </span>
+
+                {% endif %}
+
+
+                {% if crop.temperature %}
+
+                <span class="tag">
+                    🌡️ {{ crop.temperature }}
+                </span>
+
+                {% endif %}
+
+
+                {% if crop.soil_type %}
+
+                <span class="tag">
+                    🌿 {{ crop.soil_type }}
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <a
+                href="{{ url_for('crop_details', crop_name=crop.crop_name) }}"
+                class="view-btn"
+            >
+                View Detailed Advisory →
+            </a>
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h3>
+            🌱 No Crop Records Available
+        </h3>
+
+        <p>
+            Crop information will appear here once
+            crop records are added by the administrator.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION BANNER -->
+    <!-- ================================================= -->
+
+    <div class="info-banner">
+
+        <h3>
+            🌾 Why Use AgriSmart Crop Advisory?
+        </h3>
+
+        <p>
+            AgriSmart organizes crop information in one
+            place so that users can quickly understand
+            crop type, temperature, water requirement,
+            soil conditions and detailed cultivation
+            guidance. The crop records are connected
+            with the MySQL database, allowing authorized
+            administrators to add, edit or remove crop
+            records through the Admin Dashboard.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+<!-- ================================================= -->
+<!-- FOOTER -->
+<!-- ================================================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <h2>
+                Agri<span>Smart</span> 🌱
+            </h2>
+
+            <p>
+                Smart Farming Advisory System for Farmers.
+                A web-based platform for organized
+                agricultural information and farming
+                advisory.
+            </p>
+
+        </div>
+
+
+        <ul class="footer-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/crops">
+                    Crop Advisory
+                </a>
+            </li>
+
+            <li>
+                <a href="/fertilizer">
+                    Fertilizer
+                </a>
+            </li>
+
+            <li>
+                <a href="/disease">
+                    Diseases
+                </a>
+            </li>
+
+            <li>
+                <a href="/schemes">
+                    Government Schemes
+                </a>
+            </li>
+
+        </ul>
+
+
+        <ul class="footer-links">
+
+            <li>
+                <a href="/policies">
+                    Agriculture Policies
+                </a>
+            </li>
+
+            <li>
+                <a href="/institutes">
+                    Agricultural Institutes
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 AgriSmart |
+        Smart Farming Advisory System for Farmers
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

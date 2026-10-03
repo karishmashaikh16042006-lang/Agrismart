@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Crop | AgriSmart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{{ url_for('home') }}" class="logo">
+        Agri<span>Smart</span> 🌱
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('crops') }}">Crop Advisory</a>
+        <a href="{{ url_for('disease') }}">Diseases</a>
+        <a href="{{ url_for('fertilizer') }}">Fertilizer</a>
+        <a href="{{ url_for('schemes') }}">Schemes</a>
+        <a href="{{ url_for('policies') }}">Policies</a>
+        <a href="{{ url_for('institutes') }}">Institutes</a>
+        <a href="{{ url_for('admin') }}" class="active">Admin</a>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="auth-page">
+
+    <div class="auth-card" style="max-width:700px;">
+
+        <div style="text-align:center; font-size:50px;">
+            🌱
+        </div>
+
+        <h1>Edit Crop</h1>
+
+        <p class="subtitle">
+            Update crop information
+        </p>
+
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label>Crop Name</label>
+
+                <input
+                    type="text"
+                    name="crop_name"
+                    value="{{ crop.crop_name }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Crop Type</label>
+
+                <input
+                    type="text"
+                    name="crop_type"
+                    value="{{ crop.crop_type }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Temperature</label>
+
+                <input
+                    type="text"
+                    name="temperature"
+                    value="{{ crop.temperature }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Water Requirement</label>
+
+                <input
+                    type="text"
+                    name="water_requirement"
+                    value="{{ crop.water_requirement }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Soil Type</label>
+
+                <input
+                    type="text"
+                    name="soil_type"
+                    value="{{ crop.soil_type }}"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-green auth-submit"
+            >
+                Save Changes
+            </button>
+
+        </form>
+
+
+        <div class="auth-bottom">
+
+            <a href="{{ url_for('admin') }}">
+                ← Back to Admin Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        <strong>AgriSmart</strong> —
+        Smart Farming Advisory System
+    </p>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fertilizer Advisory | AgriSmart</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9f7;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 72px;
+            background: #145c2e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #8ee34f;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            margin-left: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8ee34f;
+        }
+
+        .nav-links .active {
+            color: #8ee34f;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            height: 315px;
+            background:
+                linear-gradient(rgba(12, 91, 42, 0.88), rgba(12, 91, 42, 0.88)),
+                url("{{ url_for('static', filename='images/agriculture-bg.jpg') }}");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 30px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: #9af15c;
+        }
+
+        .hero-icon {
+            font-size: 45px;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #f2f2f2;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 65px 20px 40px;
+        }
+
+        .intro h2 {
+            font-size: 34px;
+            color: #145c2e;
+            margin-bottom: 18px;
+        }
+
+        .intro p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section-title {
+            text-align: center;
+            margin: 30px 0 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #145c2e;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* ================= CARDS ================= */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            border: 1px solid #e4e9e4;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.11);
+        }
+
+        .card-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #145c2e;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* ================= NUTRIENT TABLE ================= */
+
+        .table-section {
+            margin: 20px auto 65px;
+        }
+
+        .table-box {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #145c2e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+            color: #555;
+        }
+
+        tr:hover td {
+            background: #f4f8f4;
+        }
+
+        /* ================= PRACTICES ================= */
+
+        .practice-section {
+            margin-bottom: 65px;
+        }
+
+        .practice-box {
+            background: white;
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .practice-list {
+            list-style: none;
+        }
+
+        .practice-list li {
+            padding: 13px 0;
+            border-bottom: 1px solid #eeeeee;
+            color: #555;
+        }
+
+        .practice-list li:last-child {
+            border-bottom: none;
+        }
+
+        .practice-list li::before {
+            content: "✓";
+            color: #4d9f39;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* ================= WARNING ================= */
+
+        .warning {
+            background: #eef7e9;
+            border-left: 5px solid #4d9f39;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin-bottom: 60px;
+        }
+
+        .warning h3 {
+            color: #145c2e;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .warning p {
+            color: #555;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: #145c2e;
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+            margin-top: 20px;
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            max-width: 750px;
+            margin: auto;
+            color: #e8f2e8;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0d3e20;
+            color: #d8e6da;
+            text-align: center;
+            padding: 22px;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: auto;
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro h2,
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('home') }}" class="logo">
+        Agri<span>Smart</span> <span class="logo-icon">🌱</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <a href="{{ url_for('crops') }}">Crops</a>
+
+        <a href="{{ url_for('fertilizer') }}" class="active">
+            Fertilizer
+        </a>
+
+        <a href="{{ url_for('disease') }}">Disease</a>
+
+        <a href="{{ url_for('schemes') }}">Schemes</a>
+
+        <a href="{{ url_for('policies') }}">Policies</a>
+
+        <a href="{{ url_for('institutes') }}">Institutes</a>
+
+        {% if session.get('user_type') == 'admin' %}
+            <a href="{{ url_for('admin') }}">Admin</a>
+        {% endif %}
+
+        <a href="{{ url_for('logout') }}">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Fertilizer <span>Advisory</span>
+            <span class="hero-icon">🌱</span>
+        </h1>
+
+        <p>
+            Learn about balanced fertilizer use, essential plant nutrients,
+            soil testing and responsible nutrient management for healthier
+            crops and sustainable farming.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="intro">
+
+    <div class="container">
+
+        <h2>Understanding Fertilizer Management</h2>
+
+        <p>
+            Fertilizers provide essential nutrients required for healthy plant
+            growth and better crop development. Proper nutrient management
+            should be based on soil condition, crop requirements, crop stage,
+            water availability and recommended agricultural practices.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAJOR AREAS ================= -->
+
+<section class="container">
+
+    <div class="section-title">
+
+        <h2>Major Fertilizer Advisory Areas</h2>
+
+        <p>
+            Important areas to consider while managing crop nutrients.
+        </p>
+
+    </div>
+
+
+    <div class="card-grid">
+
+        <div class="card">
+
+            <div class="card-icon">🧪</div>
+
+            <h3>Soil Testing</h3>
+
+            <p>
+                Soil testing helps identify nutrient availability and soil
+                conditions. It supports better fertilizer planning according
+                to the needs of the crop and field.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🌱</div>
+
+            <h3>Balanced Nutrition</h3>
+
+            <p>
+                Crops require a balanced supply of nutrients. Proper nutrient
+                management helps maintain plant growth, crop development and
+                soil productivity.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">💧</div>
+
+            <h3>Water & Nutrients</h3>
+
+            <p>
+                Water availability affects nutrient uptake by plants. Proper
+                irrigation and nutrient management should therefore be planned
+                together.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🌾</div>
+
+            <h3>Crop Requirement</h3>
+
+            <p>
+                Different crops have different nutrient requirements. Fertilizer
+                decisions should consider crop type, growth stage and local
+                agricultural recommendations.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">♻️</div>
+
+            <h3>Organic Manure</h3>
+
+            <p>
+                Farmyard manure, compost and other organic sources can improve
+                soil organic matter and contribute to long-term soil health.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🌍</div>
+
+            <h3>Sustainable Use</h3>
+
+            <p>
+                Responsible fertilizer use helps reduce nutrient losses and
+                supports sustainable agricultural production and soil health.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NUTRIENTS ================= -->
+
+<section class="container table-section">
+
+    <div class="section-title">
+
+        <h2>Essential Plant Nutrients</h2>
+
+        <p>
+            Important nutrients involved in plant growth and development.
+        </p>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Nutrient</th>
+                    <th>General Role</th>
+                    <th>Importance</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td><strong>Nitrogen (N)</strong></td>
+
+                    <td>
+                        Supports vegetative growth and formation of chlorophyll.
+                    </td>
+
+                    <td>
+                        Important for healthy leaf and stem development.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td><strong>Phosphorus (P)</strong></td>
+
+                    <td>
+                        Supports root development and reproductive growth.
+                    </td>
+
+                    <td>
+                        Important for root and crop development.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td><strong>Potassium (K)</strong></td>
+
+                    <td>
+                        Supports overall plant strength and physiological
+                        processes.
+                    </td>
+
+                    <td>
+                        Helps plants maintain healthy growth and stress
+                        tolerance.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td><strong>Micronutrients</strong></td>
+
+                    <td>
+                        Required in smaller quantities for several plant
+                        functions.
+                    </td>
+
+                    <td>
+                        Support normal plant growth and development.
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ORGANIC SOURCES ================= -->
+
+<section class="container">
+
+    <div class="section-title">
+
+        <h2>Organic Nutrient Sources</h2>
+
+        <p>
+            Organic materials can contribute to soil fertility and soil health.
+        </p>
+
+    </div>
+
+
+    <div class="card-grid">
+
+        <div class="card">
+
+            <div class="card-icon">🌿</div>
+
+            <h3>Farmyard Manure</h3>
+
+            <p>
+                Well-decomposed farmyard manure can add organic matter and
+                nutrients to the soil while supporting soil structure.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">♻️</div>
+
+            <h3>Compost</h3>
+
+            <p>
+                Properly prepared compost contributes organic matter and can
+                support long-term soil fertility.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🌱</div>
+
+            <h3>Green Manure</h3>
+
+            <p>
+                Green manure crops can contribute organic matter and help
+                improve soil fertility when incorporated appropriately.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GOOD PRACTICES ================= -->
+
+<section class="container practice-section">
+
+    <div class="section-title">
+
+        <h2>Good Fertilizer Management Practices</h2>
+
+        <p>
+            Follow responsible practices while planning and applying nutrients.
+        </p>
+
+    </div>
+
+
+    <div class="practice-box">
+
+        <ul class="practice-list">
+
+            <li>
+                Conduct soil testing whenever possible before making fertilizer
+                decisions.
+            </li>
+
+            <li>
+                Consider crop type, soil condition and crop growth stage.
+            </li>
+
+            <li>
+                Prefer balanced nutrient management instead of relying on a
+                single nutrient.
+            </li>
+
+            <li>
+                Follow recommendations from agricultural experts and local
+                extension services.
+            </li>
+
+            <li>
+                Avoid unnecessary or excessive fertilizer application.
+            </li>
+
+            <li>
+                Store fertilizers safely in a dry and appropriate location.
+            </li>
+
+            <li>
+                Use appropriate protective measures while handling fertilizers.
+            </li>
+
+            <li>
+                Consider irrigation and nutrient management together to reduce
+                nutrient losses.
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- ================= IMPORTANT NOTE ================= -->
+
+<section class="container">
+
+    <div class="warning">
+
+        <h3>⚠️ Important Advisory</h3>
+
+        <p>
+            Fertilizer requirements are not the same for every farm. Exact
+            fertilizer quantity and application schedule can vary according to
+            soil test results, crop variety, crop stage, climate, irrigation
+            conditions and local recommendations. Farmers should follow
+            soil-test-based recommendations and guidance from qualified
+            agricultural experts or local agricultural extension services.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <h2>Make Better Farming Decisions</h2>
+
+    <p>
+        AgriSmart provides general agricultural information to help farmers
+        understand crop production, nutrient management and sustainable
+        farming practices.
+    </p>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 AgriSmart — Smart Farming Advisory System
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgriSmart | Smart Farming Advisory System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{{ url_for('home') }}" class="logo">
+        Agri<span>Smart</span> 🌱
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('home') }}" class="active">Home</a>
+
+        <a href="{{ url_for('crops') }}">Crop Advisory</a>
+
+        <a href="{{ url_for('disease') }}">Diseases</a>
+
+        <a href="{{ url_for('fertilizer') }}">Fertilizer</a>
+
+        <a href="{{ url_for('schemes') }}">Schemes</a>
+
+        <a href="{{ url_for('policies') }}">Policies</a>
+
+        <a href="{{ url_for('institutes') }}">Institutes</a>
+
+        {% if session.get('user_id') %}
+
+            {% if session.get('user_type', '').lower() == 'admin' %}
+                <a href="{{ url_for('admin') }}">Admin</a>
+            {% endif %}
+
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<section class="home-hero">
+
+    <div class="home-hero-content">
+
+        <div class="hero-icon">🌾</div>
+
+        <h1>
+            Smart Farming with
+            <span>AgriSmart</span>
+        </h1>
+
+        <p>
+            A Smart Farming Advisory System designed to organize
+            useful agricultural information and help farmers explore
+            crop requirements, fertilizer guidance, diseases,
+            government schemes, policies and agricultural institutes.
+        </p>
+
+        <div class="button-row">
+
+            <a href="{{ url_for('crops') }}" class="primary-btn">
+                Explore Crop Advisory →
+            </a>
+
+            <a href="{{ url_for('schemes') }}" class="secondary-btn">
+                Government Schemes
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <h2>About AgriSmart</h2>
+
+        <p>
+            AgriSmart brings important farming-related information
+            together in one simple and organized platform.
+        </p>
+
+    </div>
+
+    <div class="card-grid">
+
+        <div class="card">
+
+            <div class="card-icon">🌾</div>
+
+            <h3>Crop Advisory</h3>
+
+            <p>
+                Explore crop type, suitable temperature,
+                water requirement and soil information.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('crops') }}" class="crop-link">
+                Explore Crops →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🧪</div>
+
+            <h3>Fertilizer Advisory</h3>
+
+            <p>
+                Understand basic fertilizer and nutrient
+                management information for crops.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('fertilizer') }}" class="crop-link">
+                View Fertilizer →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🩺</div>
+
+            <h3>Disease Advisory</h3>
+
+            <p>
+                Learn about common crop diseases,
+                symptoms and preventive measures.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('disease') }}" class="crop-link">
+                View Diseases →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🏛️</div>
+
+            <h3>Government Schemes</h3>
+
+            <p>
+                Explore agricultural schemes and support
+                programs relevant to farmers.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('schemes') }}" class="crop-link">
+                Explore Schemes →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">📜</div>
+
+            <h3>Agriculture Policies</h3>
+
+            <p>
+                Understand important agriculture policies,
+                initiatives and policy areas.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('policies') }}" class="crop-link">
+                Explore Policies →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🎓</div>
+
+            <h3>Agriculture Institutes</h3>
+
+            <p>
+                Discover agriculture-related institutes,
+                education, research and training opportunities.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('institutes') }}" class="crop-link">
+                Explore Institutes →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        <strong>AgriSmart</strong> —
+        Smart Farming Advisory System for Farmers
+    </p>
+
+    <p>
+        Developed as a BSc Computer Science academic project.
+    </p>
+
+</footer>
+
+</body>
+</html>

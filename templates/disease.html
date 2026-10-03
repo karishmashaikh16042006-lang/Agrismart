@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Advisory | AgriSmart</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f4;
+            color: #26382b;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #0b5d35, #087443);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,.15);
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #c8f7d5;
+        }
+
+        .logout {
+            background: white;
+            color: #087443 !important;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #07552f, #139054);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero-icon {
+            font-size: 55px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #075c34;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #66756b;
+            max-width: 850px;
+            margin: 0 auto 35px;
+        }
+
+        .disease-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 17px;
+            border: 1px solid #e2eee6;
+            box-shadow: 0 7px 25px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.13);
+        }
+
+        .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #087443;
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #59685d;
+            font-size: 14px;
+        }
+
+        .card ul {
+            margin-top: 10px;
+            padding-left: 20px;
+            color: #59685d;
+            font-size: 14px;
+        }
+
+        .card li {
+            margin-bottom: 7px;
+        }
+
+        .prevention {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 45px;
+            box-shadow: 0 7px 25px rgba(0,0,0,.07);
+        }
+
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .box {
+            background: #f5faf6;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #12834b;
+        }
+
+        .box h3 {
+            color: #087443;
+            margin-bottom: 12px;
+        }
+
+        .box ul {
+            padding-left: 20px;
+            color: #59685d;
+        }
+
+        .box li {
+            margin-bottom: 9px;
+        }
+
+        .warning {
+            background: #fff8df;
+            border-left: 6px solid #dfad20;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 45px;
+        }
+
+        .warning h3 {
+            color: #80620e;
+            margin-bottom: 8px;
+        }
+
+        .warning p {
+            color: #6d633f;
+            font-size: 14px;
+        }
+
+        .cta {
+            background: linear-gradient(135deg,#0b6338,#159054);
+            color: white;
+            padding: 42px 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cta h2 {
+            margin-bottom: 10px;
+            font-size: 29px;
+        }
+
+        footer {
+            background: #063d25;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 13px;
+            opacity: .85;
+            margin: 4px;
+        }
+
+        @media(max-width:900px) {
+            .disease-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .prevention-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .disease-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{{ url_for('home') }}" class="logo">🌱 AgriSmart</a>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('crops') }}">Crop Advisory</a>
+        <a href="{{ url_for('fertilizer') }}">Fertilizer</a>
+        <a href="{{ url_for('disease') }}">Diseases</a>
+        <a href="{{ url_for('schemes') }}">Schemes</a>
+        <a href="{{ url_for('policies') }}">Policies</a>
+        <a href="{{ url_for('institutes') }}">Institutes</a>
+
+        {% if session.get('user_type') == 'admin' %}
+            <a href="{{ url_for('admin') }}">Admin</a>
+        {% endif %}
+
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="hero-icon">🦠</div>
+
+    <h1>Crop Disease Advisory</h1>
+
+    <p>
+        Learn about common crop diseases, their general symptoms,
+        preventive practices and responsible crop protection.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+    <h2 class="section-title">Common Crop Diseases</h2>
+
+    <p class="subtitle">
+        Early identification and preventive crop management can help
+        reduce disease-related losses. Always confirm the disease
+        before using any plant protection product.
+    </p>
+
+
+    <div class="disease-grid">
+
+        <div class="card">
+            <div class="icon">🌾</div>
+            <h3>Wheat Rust</h3>
+            <p>
+                Rust diseases may appear as reddish-brown or yellowish
+                rust-like markings on leaves and plant parts.
+            </p>
+            <ul>
+                <li>Monitor crops regularly.</li>
+                <li>Use recommended varieties.</li>
+                <li>Maintain proper crop management.</li>
+            </ul>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🌾</div>
+            <h3>Rice Blast</h3>
+            <p>
+                Blast can produce characteristic lesions on leaves and
+                other parts of rice plants.
+            </p>
+            <ul>
+                <li>Use healthy planting material.</li>
+                <li>Avoid excessive nitrogen application.</li>
+                <li>Follow local crop protection advice.</li>
+            </ul>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🍅</div>
+            <h3>Tomato Leaf Diseases</h3>
+            <p>
+                Tomato plants can be affected by several fungal,
+                bacterial and viral diseases.
+            </p>
+            <ul>
+                <li>Remove severely affected plant material.</li>
+                <li>Maintain field sanitation.</li>
+                <li>Avoid unnecessary leaf wetness.</li>
+            </ul>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🥔</div>
+            <h3>Potato Late Blight</h3>
+            <p>
+                Late blight can cause dark lesions on leaves and stems
+                and may affect potato tubers.
+            </p>
+            <ul>
+                <li>Monitor during favourable weather.</li>
+                <li>Use healthy planting material.</li>
+                <li>Follow locally recommended management.</li>
+            </ul>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🌽</div>
+            <h3>Maize Leaf Diseases</h3>
+            <p>
+                Maize may experience different leaf diseases depending
+                on variety, weather and local conditions.
+            </p>
+            <ul>
+                <li>Inspect leaves regularly.</li>
+                <li>Maintain field sanitation.</li>
+                <li>Use recommended varieties and practices.</li>
+            </ul>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🌿</div>
+            <h3>Soybean Diseases</h3>
+            <p>
+                Soybean can be affected by fungal, bacterial and viral
+                diseases under suitable conditions.
+            </p>
+            <ul>
+                <li>Use quality seed.</li>
+                <li>Maintain proper field drainage.</li>
+                <li>Monitor crop growth regularly.</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <section class="prevention">
+
+        <h2 class="section-title">Disease Prevention Practices</h2>
+
+        <p class="subtitle">
+            Preventive management is an important part of integrated
+            crop protection.
+        </p>
+
+        <div class="prevention-grid">
+
+            <div class="box">
+                <h3>🌱 Before Planting</h3>
+                <ul>
+                    <li>Use healthy and quality seed or planting material.</li>
+                    <li>Select suitable varieties for the region.</li>
+                    <li>Maintain field sanitation.</li>
+                    <li>Follow recommended crop rotation where applicable.</li>
+                </ul>
+            </div>
+
+
+            <div class="box">
+                <h3>🔍 During Crop Growth</h3>
+                <ul>
+                    <li>Inspect crops regularly.</li>
+                    <li>Look for unusual spots, wilting or discoloration.</li>
+                    <li>Maintain suitable irrigation practices.</li>
+                    <li>Remove and manage affected plant material appropriately.</li>
+                </ul>
+            </div>
+
+
+            <div class="box">
+                <h3>🧑‍🌾 Integrated Management</h3>
+                <ul>
+                    <li>Combine cultural, biological and other appropriate practices.</li>
+                    <li>Use plant protection products only when appropriate.</li>
+                    <li>Follow product labels and local recommendations.</li>
+                    <li>Use expert advice when disease identification is uncertain.</li>
+                </ul>
+            </div>
+
+
+            <div class="box">
+                <h3>📋 Regular Monitoring</h3>
+                <ul>
+                    <li>Observe crop health at different growth stages.</li>
+                    <li>Record recurring disease problems.</li>
+                    <li>Pay attention to weather conditions.</li>
+                    <li>Seek agricultural extension advice for serious outbreaks.</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="warning">
+
+        <h3>⚠️ Important Safety Advisory</h3>
+
+        <p>
+            AgriSmart provides general educational information and does
+            not replace professional disease diagnosis. Symptoms of
+            different diseases can look similar. Do not select a
+            pesticide or fungicide only from symptoms shown on this
+            website. Confirm the problem and follow the product label,
+            local agricultural recommendations and applicable safety
+            instructions.
+        </p>
+
+    </div>
+
+
+    <section class="cta">
+
+        <h2>🌿 Healthy Crops Start With Early Monitoring</h2>
+
+        <p>
+            Regular observation, healthy planting material, good field
+            hygiene, balanced crop management and timely expert advice
+            can support better disease management.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 AgriSmart — Smart Farming Advisory System</p>
+
+    <p>General agricultural information for educational purposes.</p>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Government Schemes | AgriSmart</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8f5;
+            color: #263b2b;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 72px;
+            background: #123d25;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #7dcc82;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8edb94;
+        }
+
+        .logout {
+            color: #ffb0b0 !important;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(8, 55, 28, 0.78),
+                    rgba(8, 55, 28, 0.78)
+                ),
+                url("/static/images/agriculture-bg.jpg");
+
+            background-size: cover;
+            background-position: center;
+            padding: 70px 20px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: #91e39a;
+        }
+
+        .hero p {
+            color: #e7f4e9;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: 70px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #174d2c;
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 45px;
+            color: #657267;
+            line-height: 1.7;
+        }
+
+        /* ================= SCHEME GRID ================= */
+
+        .scheme-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .scheme-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e4ece5;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .scheme-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: #e5f4e7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .scheme-card h3 {
+            color: #174d2c;
+            font-size: 21px;
+            margin-bottom: 13px;
+        }
+
+        .scheme-card p {
+            color: #647066;
+            line-height: 1.7;
+            font-size: 15px;
+            flex-grow: 1;
+        }
+
+        .scheme-tag {
+            display: inline-block;
+            width: fit-content;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #edf7ee;
+            color: #28713c;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* ================= OFFICIAL BUTTON ================= */
+
+        .official-btn {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            background: #176b35;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .official-btn:hover {
+            background: #0f4e26;
+            transform: translateY(-2px);
+        }
+
+        /* ================= INFO BOX ================= */
+
+        .info-box {
+            margin-top: 55px;
+            background: #eaf6ec;
+            border-left: 5px solid #2d7b43;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .info-box h3 {
+            color: #174d2c;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #536257;
+            line-height: 1.7;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #123d25;
+            color: #d7e6d9;
+            text-align: center;
+            padding: 28px 20px;
+            margin-top: 80px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #b8c9bc;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .scheme-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: auto;
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 450px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .scheme-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            Agri<span>Smart</span> 🌱
+        </a>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('crops') }}">Crops</a>
+
+            <a href="{{ url_for('fertilizer') }}">Fertilizer</a>
+
+            <a href="{{ url_for('disease') }}">Disease</a>
+
+            <a href="{{ url_for('schemes') }}">Schemes</a>
+
+            <a href="{{ url_for('policies') }}">Policies</a>
+
+            <a href="{{ url_for('institutes') }}">Institutes</a>
+
+            {% if session.get('user_type') == 'admin' %}
+                <a href="{{ url_for('admin') }}">Admin</a>
+            {% endif %}
+
+            <a href="{{ url_for('logout') }}" class="logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Government <span>Agricultural Schemes</span> 🌾
+            </h1>
+
+            <p>
+                Explore important government schemes and access
+                their official portals for applications, status,
+                eligibility and detailed information.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <h2 class="section-title">
+            Important Government Schemes
+        </h2>
+
+        <p class="section-subtitle">
+            AgriSmart provides basic information about agricultural
+            support schemes. For the latest eligibility, benefits,
+            application process and status, always use the official
+            government website.
+        </p>
+
+
+        <div class="scheme-grid">
+
+
+            <!-- PM KISAN -->
+
+            <div class="scheme-card">
+
+                <div class="scheme-icon">
+                    👨‍🌾
+                </div>
+
+                <h3>
+                    PM-KISAN Samman Nidhi
+                </h3>
+
+                <span class="scheme-tag">
+                    Farmer Income Support
+                </span>
+
+                <p>
+                    Pradhan Mantri Kisan Samman Nidhi provides
+                    income support to eligible farmer families
+                    according to the scheme guidelines.
+                </p>
+
+                <a
+                    href="https://pmkisan.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-btn"
+                >
+                    Visit Official Website ↗
+                </a>
+
+            </div>
+
+
+            <!-- PMFBY -->
+
+            <div class="scheme-card">
+
+                <div class="scheme-icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    Pradhan Mantri Fasal Bima Yojana
+                </h3>
+
+                <span class="scheme-tag">
+                    Crop Insurance
+                </span>
+
+                <p>
+                    PMFBY is a crop insurance scheme. The official
+                    portal provides information related to crop
+                    insurance, applications, status and support.
+                </p>
+
+                <a
+                    href="https://pmfby.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-btn"
+                >
+                    Visit Official Website ↗
+                </a>
+
+            </div>
+
+
+            <!-- SOIL HEALTH CARD -->
+
+            <div class="scheme-card">
+
+                <div class="scheme-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Soil Health Card
+                </h3>
+
+                <span class="scheme-tag">
+                    Soil & Fertility
+                </span>
+
+                <p>
+                    The Soil Health Card portal provides soil-related
+                    information and services that can support better
+                    soil and nutrient management.
+                </p>
+
+                <a
+                    href="https://soilhealth.dac.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-btn"
+                >
+                    Visit Official Website ↗
+                </a>
+
+            </div>
+
+
+            <!-- PMKSY -->
+
+            <div class="scheme-card">
+
+                <div class="scheme-icon">
+                    💧
+                </div>
+
+                <h3>
+                    Pradhan Mantri Krishi Sinchayee Yojana
+                </h3>
+
+                <span class="scheme-tag">
+                    Irrigation
+                </span>
+
+                <p>
+                    PMKSY focuses on improving irrigation coverage,
+                    water-use efficiency and agricultural water
+                    management.
+                </p>
+
+                <a
+                    href="https://pmksy.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-btn"
+                >
+                    Visit Official Website ↗
+                </a>
+
+            </div>
+
+
+            <!-- AGRICULTURE INFRASTRUCTURE FUND -->
+
+            <div class="scheme-card">
+
+                <div class="scheme-icon">
+                    🏗️
+                </div>
+
+                <h3>
+                    Agriculture Infrastructure Fund
+                </h3>
+
+                <span class="scheme-tag">
+                    Agriculture Infrastructure
+                </span>
+
+                <p>
+                    Agriculture Infrastructure Fund supports financing
+                    for eligible post-harvest management infrastructure
+                    and community farming assets.
+                </p>
+
+                <a
+                    href="https://agriinfra.dac.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-btn"
+                >
+                    Visit Official Website ↗
+                </a>
+
+            </div>
+
+
+            <!-- ICAR -->
+
+            <div class="scheme-card">
+
+                <div class="scheme-icon">
+                    🔬
+                </div>
+
+                <h3>
+                    ICAR Agricultural Resources
+                </h3>
+
+                <span class="scheme-tag">
+                    Research & Advisory
+                </span>
+
+                <p>
+                    ICAR provides agricultural research, education,
+                    technology and extension-related information
+                    through its official network.
+                </p>
+
+                <a
+                    href="https://www.icar.gov.in/en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-btn"
+                >
+                    Visit Official Website ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= INFO ================= -->
+
+        <div class="info-box">
+
+            <h3>
+                Important Note
+            </h3>
+
+            <p>
+                Scheme rules, eligibility, benefits, application
+                dates and procedures may change. AgriSmart is an
+                educational information platform. Always verify
+                the latest information through the respective
+                official government portal before applying.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            AgriSmart 🌱
+        </h3>
+
+        <p>
+            Smart Farming Advisory System for Farmers
+        </p>
+
+        <p style="margin-top: 8px;">
+            © 2026 AgriSmart. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>

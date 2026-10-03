@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agricultural Policies | AgriSmart</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f4;
+            color: #26382b;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: linear-gradient(135deg, #0b5d35, #087443);
+            padding: 16px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            color: white;
+            font-size: 25px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #c8f7d5;
+        }
+
+        .logout {
+            background: white;
+            color: #087443 !important;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #07552f, #139054);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero-icon {
+            font-size: 55px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #075c34;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #66756b;
+            max-width: 850px;
+            margin: 0 auto 35px;
+        }
+
+        /* POLICY CARDS */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .policy-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid #e2eee6;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.13);
+        }
+
+        .policy-icon {
+            width: 60px;
+            height: 60px;
+            background: #e6f6eb;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 17px;
+        }
+
+        .policy-card h3 {
+            color: #087443;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .policy-card p {
+            color: #59685d;
+            font-size: 14px;
+        }
+
+        .policy-card ul {
+            padding-left: 20px;
+            margin-top: 12px;
+            color: #59685d;
+            font-size: 14px;
+        }
+
+        .policy-card li {
+            margin-bottom: 7px;
+        }
+
+        /* FOCUS SECTION */
+        .focus-section {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 45px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.07);
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .focus-box {
+            background: #f5faf6;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #12834b;
+        }
+
+        .focus-box h3 {
+            color: #087443;
+            margin-bottom: 12px;
+        }
+
+        .focus-box p {
+            color: #59685d;
+            font-size: 14px;
+        }
+
+        /* POLICY AREAS */
+        .areas {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 45px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.07);
+        }
+
+        .area-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .area {
+            background: #f5faf6;
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .area span {
+            display: block;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .area h3 {
+            color: #087443;
+            font-size: 16px;
+        }
+
+        /* NOTICE */
+        .notice {
+            background: #fff8df;
+            border-left: 6px solid #dfad20;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 45px;
+        }
+
+        .notice h3 {
+            color: #80620e;
+            margin-bottom: 8px;
+        }
+
+        .notice p {
+            color: #6d633f;
+            font-size: 14px;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg,#0b6338,#159054);
+            color: white;
+            padding: 42px 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cta h2 {
+            font-size: 29px;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #063d25;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 13px;
+            opacity: 0.85;
+            margin: 4px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+            .policy-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .area-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .area-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <a href="{{ url_for('home') }}" class="logo">
+        🌱 AgriSmart
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <a href="{{ url_for('crops') }}">Crop Advisory</a>
+
+        <a href="{{ url_for('fertilizer') }}">Fertilizer</a>
+
+        <a href="{{ url_for('disease') }}">Diseases</a>
+
+        <a href="{{ url_for('schemes') }}">Schemes</a>
+
+        <a href="{{ url_for('policies') }}">Policies</a>
+
+        <a href="{{ url_for('institutes') }}">Institutes</a>
+
+        {% if session.get('user_type') == 'admin' %}
+            <a href="{{ url_for('admin') }}">Admin</a>
+        {% endif %}
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-icon">📜</div>
+
+    <h1>Agricultural Policies</h1>
+
+    <p>
+        Understand major policy areas that influence Indian agriculture,
+        farmer welfare, sustainable farming, irrigation, markets,
+        technology and agricultural development.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+    <h2 class="section-title">
+        Major Agricultural Policy Areas
+    </h2>
+
+    <p class="subtitle">
+        Agricultural policy covers several areas related to farm
+        production, natural resources, markets, infrastructure,
+        technology and farmer welfare.
+    </p>
+
+
+    <!-- POLICY CARDS -->
+    <div class="policy-grid">
+
+        <div class="policy-card">
+
+            <div class="policy-icon">🌾</div>
+
+            <h3>Agricultural Production</h3>
+
+            <p>
+                Policies and programmes support agricultural productivity,
+                improved technologies, quality planting material and
+                better crop management.
+            </p>
+
+            <ul>
+                <li>Crop productivity</li>
+                <li>Improved technologies</li>
+                <li>Quality inputs</li>
+            </ul>
+
+        </div>
+
+
+        <div class="policy-card">
+
+            <div class="policy-icon">💧</div>
+
+            <h3>Irrigation & Water Management</h3>
+
+            <p>
+                Agricultural development includes improving irrigation
+                access and encouraging efficient and sustainable use
+                of water resources.
+            </p>
+
+            <ul>
+                <li>Irrigation development</li>
+                <li>Water-use efficiency</li>
+                <li>Water conservation</li>
+            </ul>
+
+        </div>
+
+
+        <div class="policy-card">
+
+            <div class="policy-icon">🌱</div>
+
+            <h3>Sustainable Agriculture</h3>
+
+            <p>
+                Policy initiatives also focus on resource conservation,
+                soil health, climate resilience and sustainable
+                agricultural practices.
+            </p>
+
+            <ul>
+                <li>Soil health</li>
+                <li>Resource conservation</li>
+                <li>Climate resilience</li>
+            </ul>
+
+        </div>
+
+
+        <div class="policy-card">
+
+            <div class="policy-icon">💰</div>
+
+            <h3>Farmer Welfare</h3>
+
+            <p>
+                Government programmes provide different forms of support
+                aimed at improving farmer welfare and reducing agricultural
+                risks.
+            </p>
+
+            <ul>
+                <li>Income support</li>
+                <li>Risk management</li>
+                <li>Farmer support programmes</li>
+            </ul>
+
+        </div>
+
+
+        <div class="policy-card">
+
+            <div class="policy-icon">🏪</div>
+
+            <h3>Agricultural Markets</h3>
+
+            <p>
+                Agricultural policies also address market access,
+                agricultural marketing, price-related mechanisms and
+                better market participation.
+            </p>
+
+            <ul>
+                <li>Market access</li>
+                <li>Agricultural marketing</li>
+                <li>Price-related mechanisms</li>
+            </ul>
+
+        </div>
+
+
+        <div class="policy-card">
+
+            <div class="policy-icon">💻</div>
+
+            <h3>Digital Agriculture</h3>
+
+            <p>
+                Technology and digital platforms are increasingly used
+                for agricultural information, services, monitoring
+                and decision support.
+            </p>
+
+            <ul>
+                <li>Digital services</li>
+                <li>Information access</li>
+                <li>Technology-based agriculture</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- POLICY FOCUS -->
+    <section class="focus-section">
+
+        <h2 class="section-title">
+            Policy Focus in Modern Agriculture
+        </h2>
+
+        <p class="subtitle">
+            Agricultural development increasingly combines productivity,
+            sustainability, technology and farmer welfare.
+        </p>
+
+
+        <div class="focus-grid">
+
+            <div class="focus-box">
+
+                <h3>🌍 Climate-Resilient Farming</h3>
+
+                <p>
+                    Agricultural planning increasingly considers climate
+                    variability, efficient resource use and practices that
+                    can improve resilience to changing conditions.
+                </p>
+
+            </div>
+
+
+            <div class="focus-box">
+
+                <h3>🧪 Soil & Nutrient Management</h3>
+
+                <p>
+                    Soil testing, balanced nutrient management and
+                    improved soil health are important components of
+                    sustainable agricultural development.
+                </p>
+
+            </div>
+
+
+            <div class="focus-box">
+
+                <h3>🚜 Technology & Mechanisation</h3>
+
+                <p>
+                    Modern agricultural development includes the use of
+                    improved machinery, digital technologies and
+                    scientific crop-management practices.
+                </p>
+
+            </div>
+
+
+            <div class="focus-box">
+
+                <h3>👨‍🌾 Farmer-Centric Development</h3>
+
+                <p>
+                    Agricultural programmes also focus on improving
+                    access to information, services, infrastructure,
+                    markets and other forms of farmer support.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POLICY AREAS -->
+    <section class="areas">
+
+        <h2 class="section-title">
+            Key Areas Covered
+        </h2>
+
+        <div class="area-list">
+
+            <div class="area">
+                <span>🌾</span>
+                <h3>Crop Production</h3>
+            </div>
+
+            <div class="area">
+                <span>💧</span>
+                <h3>Irrigation</h3>
+            </div>
+
+            <div class="area">
+                <span>🌱</span>
+                <h3>Soil Health</h3>
+            </div>
+
+            <div class="area">
+                <span>🛡️</span>
+                <h3>Crop Risk</h3>
+            </div>
+
+            <div class="area">
+                <span>🏪</span>
+                <h3>Markets</h3>
+            </div>
+
+            <div class="area">
+                <span>💻</span>
+                <h3>Digital Agriculture</h3>
+            </div>
+
+            <div class="area">
+                <span>🏗️</span>
+                <h3>Infrastructure</h3>
+            </div>
+
+            <div class="area">
+                <span>👨‍🌾</span>
+                <h3>Farmer Welfare</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTICE -->
+    <div class="notice">
+
+        <h3>⚠️ Important Notice</h3>
+
+        <p>
+            Agricultural policies, rules, programmes and implementation
+            guidelines may change over time. The information on this page
+            provides a general educational overview. Users should verify
+            current policy details through official government departments
+            and portals before making decisions or applying for any
+            programme.
+        </p>
+
+    </div>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+        <h2>🌱 Better Awareness, Better Decisions</h2>
+
+        <p>
+            Understanding agricultural policies can help farmers,
+            students and citizens learn how government initiatives
+            support agriculture and rural development.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 AgriSmart — Smart Farming Advisory System
+    </p>
+
+    <p>
+        General agricultural information for educational purposes.
+    </p>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ crop_name }} Advisory | AgriSmart</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8f4;
+            color: #26352a;
+            line-height: 1.7;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #123c28;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #9bd66d;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a9e879;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(18,60,40,0.97),
+                    rgba(35,97,61,0.94)
+                );
+
+            color: white;
+            padding: 75px 8%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "🌱";
+            position: absolute;
+            right: 8%;
+            top: 15px;
+            font-size: 180px;
+            opacity: 0.08;
+        }
+
+        .hero-label {
+            color: #a9e879;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            font-size: 17px;
+            color: #e4efe7;
+        }
+
+        .crop-icon {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 55px 7%;
+        }
+
+        /* ================= BASIC INFO ================= */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #e0e9df;
+            box-shadow: 0 7px 22px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .info-card h4 {
+            color: #6c7b70;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+        }
+
+        .info-card p {
+            color: #123c28;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* ================= INTRO BOX ================= */
+
+        .intro-box {
+            background: #eaf5e7;
+            border-left: 5px solid #5e9e42;
+            padding: 25px 28px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+        }
+
+        .intro-box h2 {
+            color: #123c28;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .intro-box p {
+            color: #526259;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            background: white;
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: 18px;
+            border: 1px solid #e0e9df;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #123c28;
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+        .section h2::after {
+            content: "";
+            display: block;
+            width: 55px;
+            height: 4px;
+            background: #8bc95d;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+
+        /* ================= ADVISORY GRID ================= */
+
+        .advisory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .advisory-card {
+            background: #f5f8f4;
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid #e1eadf;
+        }
+
+        .advisory-card h3 {
+            color: #23613d;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .advisory-card p {
+            color: #59685f;
+            font-size: 14px;
+        }
+
+        /* ================= CULTIVATION ================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .step {
+            background: #f4f8f2;
+            padding: 22px 15px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #23613d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            color: #123c28;
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .step p {
+            font-size: 13px;
+            color: #657269;
+        }
+
+        /* ================= FERTILIZER ================= */
+
+        .fertilizer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .fertilizer-card {
+            padding: 25px;
+            background: #f4f8f2;
+            border-radius: 14px;
+            border-left: 5px solid #6eaa4c;
+        }
+
+        .fertilizer-card h3 {
+            color: #123c28;
+            margin-bottom: 8px;
+        }
+
+        .fertilizer-card p {
+            color: #617067;
+            font-size: 14px;
+        }
+
+        /* ================= PESTS ================= */
+
+        .pest-box {
+            background: #fff8ef;
+            border: 1px solid #f0dfca;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .pest-box h3 {
+            color: #89552e;
+            margin-bottom: 8px;
+        }
+
+        .pest-box p {
+            color: #665d55;
+            font-size: 14px;
+        }
+
+        /* ================= DISEASE ================= */
+
+        .disease-box {
+            background: #fff4f3;
+            border: 1px solid #efd9d6;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .disease-box h3 {
+            color: #91443c;
+            margin-bottom: 8px;
+        }
+
+        .disease-box p {
+            color: #665957;
+            font-size: 14px;
+        }
+
+        /* ================= TIPS ================= */
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            background: #f4f8f2;
+            margin-bottom: 12px;
+            padding: 15px 18px;
+            border-radius: 10px;
+            border-left: 4px solid #7db856;
+            color: #526259;
+        }
+
+        .tips-list li::before {
+            content: "✓";
+            color: #3d7c3c;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* ================= NOTE ================= */
+
+        .note {
+            background: #edf5ff;
+            border-left: 5px solid #4d86bd;
+            padding: 20px 24px;
+            border-radius: 12px;
+            color: #4c5d6d;
+            font-size: 14px;
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-area {
+            text-align: center;
+            margin: 45px 0 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 13px 30px;
+            background: #23613d;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #123c28;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #123c28;
+            color: #dce9df;
+            text-align: center;
+            padding: 28px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fertilizer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .container {
+                padding: 40px 5%;
+            }
+
+            .info-grid,
+            .advisory-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===================================================== -->
+<!-- NAVBAR -->
+<!-- ===================================================== -->
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        Agri<span>Smart</span> 🌱
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/crops">
+            Crop Advisory
+        </a>
+
+        <a href="/fertilizer">
+            Fertilizer
+        </a>
+
+        <a href="/disease">
+            Diseases
+        </a>
+
+        <a href="/schemes">
+            Schemes
+        </a>
+
+        <a href="/policies">
+            Policies
+        </a>
+
+        <a href="/institutes">
+            Institutes
+        </a>
+
+        {% if session.get("user_type", "").lower() == "admin" %}
+
+        <a href="/admin">
+            Admin
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<!-- ===================================================== -->
+<!-- HERO -->
+<!-- ===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-label">
+        Smart Crop Advisory
+    </div>
+
+    <div class="crop-icon">
+        {{ icon }}
+    </div>
+
+    <h1>
+        {{ crop_name }}
+    </h1>
+
+    <p>
+        Get detailed farming guidance for
+        {{ crop_name }}, including growing conditions,
+        irrigation, fertilizer management, pest and
+        disease awareness, harvesting and practical
+        farming tips.
+    </p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- MAIN -->
+<!-- ===================================================== -->
+
+<main class="container">
+
+
+    <!-- ================================================= -->
+    <!-- BASIC INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="info-grid">
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🌾
+            </div>
+
+            <h4>
+                Crop Type
+            </h4>
+
+            <p>
+                {{ data.type }}
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🌡️
+            </div>
+
+            <h4>
+                Suitable Temperature
+            </h4>
+
+            <p>
+                {{ data.temperature }}
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                💧
+            </div>
+
+            <h4>
+                Water Requirement
+            </h4>
+
+            <p>
+                {{ data.water }}
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🌱
+            </div>
+
+            <h4>
+                Suitable Soil
+            </h4>
+
+            <p>
+                {{ data.soil }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- OVERVIEW -->
+    <!-- ================================================= -->
+
+    <div class="intro-box">
+
+        <h2>
+            🌿 Crop Overview
+        </h2>
+
+        <p>
+            {{ advisory.overview }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- CULTIVATION PROCESS -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            🌾 Cultivation Process
+        </h2>
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Land Preparation
+                </h3>
+
+                <p>
+                    Prepare the field properly,
+                    improve soil condition and
+                    remove unwanted weeds.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    Seed Selection
+                </h3>
+
+                <p>
+                    Select healthy and suitable
+                    seed or planting material.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Sowing
+                </h3>
+
+                <p>
+                    Follow recommended sowing
+                    time, depth and spacing.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <h3>
+                    Crop Care
+                </h3>
+
+                <p>
+                    Monitor irrigation, nutrients,
+                    weeds, pests and diseases.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    5
+                </div>
+
+                <h3>
+                    Harvesting
+                </h3>
+
+                <p>
+                    Harvest at the suitable
+                    maturity stage.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- GROWING ADVISORY -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            🌱 Growing & Farming Advisory
+        </h2>
+
+        <div class="advisory-grid">
+
+
+            <div class="advisory-card">
+
+                <h3>
+                    📅 Suitable Season
+                </h3>
+
+                <p>
+                    {{ advisory.season }}
+                </p>
+
+            </div>
+
+
+            <div class="advisory-card">
+
+                <h3>
+                    🌱 Sowing Guidance
+                </h3>
+
+                <p>
+                    {{ advisory.sowing }}
+                </p>
+
+            </div>
+
+
+            <div class="advisory-card">
+
+                <h3>
+                    💧 Irrigation Advisory
+                </h3>
+
+                <p>
+                    {{ advisory.irrigation }}
+                </p>
+
+            </div>
+
+
+            <div class="advisory-card">
+
+                <h3>
+                    🌿 Weed Management
+                </h3>
+
+                <p>
+                    {{ advisory.weeds }}
+                </p>
+
+            </div>
+
+
+            <div class="advisory-card">
+
+                <h3>
+                    🌾 Harvesting Advisory
+                </h3>
+
+                <p>
+                    {{ advisory.harvesting }}
+                </p>
+
+            </div>
+
+
+            <div class="advisory-card">
+
+                <h3>
+                    📦 Storage Advisory
+                </h3>
+
+                <p>
+                    {{ advisory.storage }}
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- FERTILIZER -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            🧪 Fertilizer & Nutrient Advisory
+        </h2>
+
+        <div class="fertilizer-grid">
+
+
+            <div class="fertilizer-card">
+
+                <h3>
+                    🟢 Fertilizer Management
+                </h3>
+
+                <p>
+                    {{ advisory.fertilizer }}
+                </p>
+
+            </div>
+
+
+            <div class="fertilizer-card">
+
+                <h3>
+                    🌿 Nutrient Requirements
+                </h3>
+
+                <p>
+                    {{ advisory.nutrients }}
+                </p>
+
+            </div>
+
+
+            <div class="fertilizer-card">
+
+                <h3>
+                    🌱 Soil-Based Approach
+                </h3>
+
+                <p>
+                    Soil testing should be considered
+                    before making major fertilizer
+                    decisions so that nutrient
+                    application can match actual
+                    field requirements.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- PESTS -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            🐛 Pest Advisory
+        </h2>
+
+        <div class="pest-box">
+
+            <h3>
+                Common Pests
+            </h3>
+
+            <p>
+                {{ advisory.pests }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- DISEASE -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            🦠 Disease Advisory
+        </h2>
+
+        <div class="disease-box">
+
+            <h3>
+                Common Diseases
+            </h3>
+
+            <p>
+                {{ advisory.diseases }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- PREVENTION -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            🛡️ Pest & Disease Prevention
+        </h2>
+
+        <div class="advisory-card">
+
+            <p>
+                {{ advisory.prevention }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SMART FARMING TIPS -->
+    <!-- ================================================= -->
+
+    <section class="section">
+
+        <h2>
+            💡 Smart Farming Tips
+        </h2>
+
+        <ul class="tips-list">
+
+            {% for tip in advisory.tips %}
+
+            <li>
+                {{ tip }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- IMPORTANT NOTE -->
+    <!-- ================================================= -->
+
+    <div class="note">
+
+        <strong>Important:</strong>
+
+        The information shown here is general
+        educational guidance. Actual farming
+        decisions can depend on local soil,
+        climate, rainfall, crop variety, water
+        availability and pest conditions.
+        Farmers should follow local agricultural
+        recommendations and expert advice where
+        required.
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- BACK -->
+    <!-- ================================================= -->
+
+    <div class="back-area">
+
+        <a href="/crops" class="back-btn">
+            ← Back to Crop Advisory
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
+
+<footer>
+
+    © 2026 AgriSmart |
+    Smart Farming Advisory System for Farmers
+
+</footer>
+
+
+</body>
+
+</html>
