@@ -11,7 +11,7 @@ app = Flask(__name__)
 # FLASK SECRET KEY
 # =========================================================
 
-app.secret_key = "agrismart_secret_key_2026"
+app.secret_key = os.getenv("SECRET_KEY", "local-dev-key-change-before-deploy")
 
 
 # =========================================================
@@ -19,18 +19,13 @@ app.secret_key = "agrismart_secret_key_2026"
 # =========================================================
 
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-
-    # IMPORTANT:
-    # Replace YOUR_EXISTING_MYSQL_PASSWORD with the same
-    # MySQL password that was already working in your project.
-    "password": os.getenv(
-        "AGRISMART_DB_PASSWORD",
-        "Simran@123"
-    ),
-
-    "database": "agrismart"
+    # Locally these defaults connect to MySQL on your computer.
+    # On Railway, set the AGRISMART_DB_* variables in the service settings.
+    "host": os.getenv("AGRISMART_DB_HOST", "localhost"),
+    "user": os.getenv("AGRISMART_DB_USER", "root"),
+    "password": os.getenv("AGRISMART_DB_PASSWORD", ""),
+    "database": os.getenv("AGRISMART_DB_NAME", "agrismart"),
+    "port": int(os.getenv("AGRISMART_DB_PORT", "3306"))
 }
 
 
@@ -40,7 +35,8 @@ def get_db_connection():
             host=DB_CONFIG["host"],
             user=DB_CONFIG["user"],
             password=DB_CONFIG["password"],
-            database=DB_CONFIG["database"]
+            database=DB_CONFIG["database"],
+            port=DB_CONFIG["port"]
         )
 
         return connection
@@ -1460,7 +1456,7 @@ def delete_crop(crop_id):
 if __name__ == "__main__":
 
     app.run(
-        host="127.0.0.1",
-        port=5050,
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", "5050")),
         debug=False
     )
