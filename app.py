@@ -897,6 +897,17 @@ def register():
                 message_type=message_type
             )
 
+        # Public registration can create only farmer or student accounts.
+        # Admin access must be granted directly by the owner in the database.
+        if user_type not in {"farmer", "student"}:
+            message = "Please select a valid role."
+            message_type = "error"
+            return render_template(
+                "register.html",
+                message=message,
+                message_type=message_type
+            )
+
         hashed_password = generate_password_hash(password)
 
         connection = get_db_connection()
@@ -1460,3 +1471,4 @@ if __name__ == "__main__":
         port=int(os.getenv("PORT", "5050")),
         debug=False
     )
+
